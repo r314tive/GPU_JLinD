@@ -5,7 +5,7 @@ FROM nvidia/cuda:12.0.1-cudnn8-runtime-ubuntu22.04
 WORKDIR /workspace
 
 # Install basic dependencies and JupyterLab
-RUN apt-get update && apt-get install -y python3-pip && \
+RUN apt-get update && apt-get install -y python3-pip git vim wget curl && \
     pip3 install notebook jupyterlab
 
 # Copy the requirements file into the container

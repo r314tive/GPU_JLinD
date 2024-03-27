@@ -1,5 +1,9 @@
 version: '3.8'
 
+networks:
+  jupyter-network:
+    driver: bridge
+
 services:
   jupyterlab:
     build: .
@@ -10,4 +14,6 @@ services:
     environment:
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: compute,utility
+    networks:
+      - jupyter-network
     runtime: nvidia
