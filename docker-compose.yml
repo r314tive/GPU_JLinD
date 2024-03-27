@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  jupyterlab:
+    image: nvidia/cuda:12.3.1-cudnn8-runtime-ubuntu20.04
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./data:/workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    command: >
+      bash -c "apt-get update && apt-get install -y python3-pip && 
+      pip3 install notebook jupyterlab && 
+      jupyter lab --ip=0.0.0.0 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.notebook_dir='/workspace'"
+    runtime: nvidia
